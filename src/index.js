@@ -8,6 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
+  //cest  id de la devision declarer sur indexedDB.html alor le contenu du compnents app va saficjer ans devision avec id root
   document.getElementById('root')
 );
 
