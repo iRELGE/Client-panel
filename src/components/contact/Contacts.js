@@ -4,9 +4,9 @@ import Contact from './Contact';
     state={
         contacts:[
             {id:1,name:"rabia elgouail",tel:"+212655823947",email:"rabia.elgouail@gmail.com"},
-            {id:2,chadi:"rabia elgouail",tel:"+212655823947",email:"chadi.elgouail@gmail.com"},
-            {id:3,chaima:"rabia elgouail",tel:"+212655823947",email:"chaima.elgouail@gmail.com"},
-            {id:4,sara:"rabia elgouail",tel:"+212655823947",email:"sara.elgouail@gmail.com"},
+            {id:2,name:"chadi elgouail",tel:"+212655823947",email:"chadi.elgouail@gmail.com"},
+            {id:3,name:"chaima elgouail",tel:"+212655823947",email:"chaima.elgouail@gmail.com"},
+            {id:4,name:"sara elgouail",tel:"+212655823947",email:"sara.elgouail@gmail.com"},
         ]
     };
      

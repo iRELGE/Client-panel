@@ -3,6 +3,7 @@ import React from 'react';
 import Contacts from './components/contact/Contacts';
 import NavBar from './components/navbar/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
   //pour css il faut declarer extension de fishier
 import './App.css'; 
 
