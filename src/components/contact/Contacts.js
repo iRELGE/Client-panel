@@ -9,6 +9,10 @@ import Contact from './Contact';
             {id:4,name:"sara elgouail",tel:"+212655823947",email:"sara.elgouail@gmail.com"},
         ]
     };
+    deleteContact()
+    {
+        console.log("contact deleted")
+    }
      
     render() {
         
@@ -27,7 +31,7 @@ import Contact from './Contact';
 
                 // />*/}
                 //cree un attribut data est affecter tout les donnees sur le param du fonction
-                  <Contact data={contact}/>
+                  <Contact key={contact.id} data={contact} deleteContactFromChild={this.deleteContact}/>
 
                 ))}
             </div>

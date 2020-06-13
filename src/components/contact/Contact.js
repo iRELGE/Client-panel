@@ -17,6 +17,11 @@ class Contact extends Component {
             }
         )
       }
+      onDeleteClick()
+      {
+          this.props.deleteContactFromChild();
+        console.log("delete");
+      }
     render() {
         
         //pour les components sous form de class il faut etuliser props pre definit c'elle qui recoi data
@@ -32,7 +37,11 @@ class Contact extends Component {
                      {/* onClick la methode ShowContact va avoir name on parame obligatoit de delarer this 
                      NB n indique pas que j ai deux param pour avoir data non pas les infos du event  */}
                     
-                    {(this.state.showContactToggle)?(<i onClick={this.ShowContact.bind(this,name)} className="fa fa-sort-down"></i>):(<i onClick={this.ShowContact.bind(this,name)} class="fa fa-plus" aria-hidden="true"></i>)}
+                    {(this.state.showContactToggle)?(<i onClick={this.ShowContact.bind(this,name)} className="fa fa-sort-down"  style={{cursor:'pointer'}}></i>):(<i onClick={this.ShowContact.bind(this,name)} style={{cursor:'pointer'}} className="fa fa-plus" aria-hidden="true">
+
+                    </i>)}
+                  
+                    <i onClick={this.onDeleteClick} style={{color:'red' ,float:'right',cursor:'pointer'}} className="fa fa-times" aria-hidden="true"></i>
                     </h4>
                    
                     <p className="card-text">
@@ -60,6 +69,7 @@ class Contact extends Component {
 // }
 Contact.propTypes = {
     data: PropTypes.object.isRequired,
+    deleteContactFromChild:PropTypes.func.isRequired
    
 }
 // Contact.propTypes = {
