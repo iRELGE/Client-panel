@@ -1,41 +1,61 @@
 import React, { Component } from 'react';
 import Contact from './Contact';
+import {Consumer} from '../context';
+
  class Contacts extends Component {
-    state={
-        contacts:[
-            {id:1,name:"rabia elgouail",tel:"+212655823947",email:"rabia.elgouail@gmail.com"},
-            {id:2,name:"chadi elgouail",tel:"+212655823947",email:"chadi.elgouail@gmail.com"},
-            {id:3,name:"chaima elgouail",tel:"+212655823947",email:"chaima.elgouail@gmail.com"},
-            {id:4,name:"sara elgouail",tel:"+212655823947",email:"sara.elgouail@gmail.com"},
-        ]
-    };
-    deleteContact()
+    
+    deleteContact(id)
     {
-        console.log("contact deleted")
+        const{contacts}=this.state;
+        //la methide filter return tout les ligne saufe la ligne qui corspand a id du paramettre
+        const newListContacts=contacts.filter((contact)=>contact.id!==id)
+        this.setState({
+            contacts: newListContacts
+        })
+        
     }
      
     render() {
-        
-        const{contacts}=this.state;
-        return (
-           
-            <div>
-                 {/*pour chaque hetiration je veux afficher un contact*/}
-                  {/*chaque heritation la ligne saffect a ce parametre contact*/}
-                {contacts.map((contact)=>(
-               
-                //   {/* <Contact name={contact.name}
-                 
-                //     tel={contact.tel}
-                //     email={contact.email}
+        return(<Consumer>
+            {value=>(
+                 <div>
+                          {/*pour chaque hetiration je veux afficher un contact*/}
+                            {/*chaque heritation la ligne saffect a ce parametre contact*/}
+                          {value.contacts.map((contact)=>(
+                        
+                  
+                           <Contact key={contact.id} data={contact} deleteContactFromChild=
+                           {this.deleteContact.bind(this,contact.id)}/>
+         
+                       ))}
+                     </div>
 
-                // />*/}
-                //cree un attribut data est affecter tout les donnees sur le param du fonction
-                  <Contact key={contact.id} data={contact} deleteContactFromChild={this.deleteContact}/>
-
-                ))}
-            </div>
+            )}
+        </Consumer>
         )
+        
+        // const{contacts}=this.state;
+        // return (
+           
+        //     <div>
+        //          {/*pour chaque hetiration je veux afficher un contact*/}
+        //           {/*chaque heritation la ligne saffect a ce parametre contact*/}
+        //         {contacts.map((contact)=>(
+               
+        //         //   {/* <Contact name={contact.name}
+                 
+        //         //     tel={contact.tel}
+        //         //     email={contact.email}
+
+        //         // />*/}
+        //         //cree un attribut data est affecter tout les donnees sur le param du fonction
+        //           <Contact key={contact.id} data={contact} deleteContactFromChild={this.deleteContact.bind(this,contact.id)}/>
+
+        //         ))}
+        //     </div>
+        // )
     }
 }
+
 export default Contacts;
+

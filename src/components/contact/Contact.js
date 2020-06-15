@@ -17,8 +17,9 @@ class Contact extends Component {
             }
         )
       }
-      onDeleteClick()
+      onDeleteClick=()=>
       {
+          
           this.props.deleteContactFromChild();
         console.log("delete");
       }
@@ -44,7 +45,7 @@ class Contact extends Component {
                     <i onClick={this.onDeleteClick} style={{color:'red' ,float:'right',cursor:'pointer'}} className="fa fa-times" aria-hidden="true"></i>
                     </h4>
                    
-                    <p className="card-text">
+                    <div className="card-text">
                         {/* affisher le contenu dans les parentaise si l acondition est true si nn afficher le null */}
                         {(this.state.showContactToggle)?(
                         <ul className="list-group">
@@ -53,7 +54,7 @@ class Contact extends Component {
                         </ul>)
                         :(null)}
                         
-                    </p>
+                    </div>
                 </div>
             </div>
         )
