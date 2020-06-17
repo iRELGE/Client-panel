@@ -12,6 +12,7 @@ import './NavBar.css'
         <nav className="navbar navbar-expand-sm navbar-dark bg-success">
             {/* pour etuliser data recuperer il faut ecrire les attribute entre {name} */}
             <a className="navbar-brand" href="http://localhost:3000">{title}</a>
+            <a>hi</a>
              <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item active">
                         <a className="nav-link" href="http://localhost:3000">Home <span className="sr-only">(current)</span></a>
