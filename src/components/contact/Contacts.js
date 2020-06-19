@@ -7,7 +7,7 @@ import {Consumer} from '../context';
     deleteContact(id)
     {
         const{contacts}=this.state;
-        //la methide filter return tout les ligne saufe la ligne qui corspand a id du paramettre
+        //la methote filter return tout les ligne saufe la ligne qui corspand a id du paramettre
         const newListContacts=contacts.filter((contact)=>contact.id!==id)
         this.setState({
             contacts: newListContacts
