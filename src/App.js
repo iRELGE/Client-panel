@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
   //pour css il faut declarer extension de fishier
 import './App.css'; 
+import AddContact from './components/contact/AddContact';
 
 function App() {
   
@@ -21,7 +22,7 @@ function App() {
       
     {/* si le components na pas de valeur alor il va prendr les valeur par defaut si ils sont gerer */}
     {/* <Contact/> */}
-    
+    <AddContact/>
     <Contacts/>
     
     

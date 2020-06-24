@@ -18,6 +18,7 @@ import {Consumer} from '../context';
     render() {
         return(<Consumer>
             {value=>(
+                
                  <div>
                           {/*pour chaque hetiration je veux afficher un contact*/}
                             {/*chaque heritation la ligne saffect a ce parametre contact*/}
