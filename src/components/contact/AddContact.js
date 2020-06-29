@@ -7,7 +7,8 @@ import TextinputGroup from '../helpers/TextinputGroup'
     state={
          name:'',
          email:'',
-         phone:''
+         phone:'',
+         errors:{}
 
         }
         onChangeInput=(e)=>this.setState({[e.target.name]:e.target.value})
@@ -15,26 +16,49 @@ import TextinputGroup from '../helpers/TextinputGroup'
            
             
             e.preventDefault();
+           const {name,email,phone}=this.state;
+            if(name=="")
+            {
+                this.setState({errors:{name:"name is requiered!"}})
+                return;
+            }
+            if(email=="")
+            {
+                this.setState({errors:{email:"email is requiered!"}})
+                return;
+            }
+            if(phone=="")
+            {
+                this.setState({errors:{phone:"phone is requiered!"}})
+                return;
+            }
             dispatch(
                 {
                     type:"ADD_CONTACT",
                     payload:{
+                        // id:size+1,
+                        // name:name,
+                        // email:email,
+                        // phone:phone
                         id:size+1,
-                        name:this.state.name,
-                        email:this.state.email,
-                        tel:this.state.phone
+                        name,
+                        email,
+                        phone
                     }
 
-                }
+                } 
             )
             this.setState({
-                name:'',
+               name:'',
                 email:'',
-                phone:''
+                phone:'',
+                errors:{}
+
+                
             })
         }
     render() {
-        const{name,email,phone}=this.state;
+        const{name,email,phone,errors}=this.state;
         return(
             <Consumer>
                 {value=>{
@@ -54,6 +78,7 @@ import TextinputGroup from '../helpers/TextinputGroup'
                                     name="name" 
                                     value={name} 
                                     onChange={this.onChangeInput}
+                                    error={errors.name}
                                 />
                                 <TextinputGroup 
                                     label="Email" 
@@ -61,6 +86,7 @@ import TextinputGroup from '../helpers/TextinputGroup'
                                     name="email" 
                                     value={email} 
                                     onChange={this.onChangeInput}
+                                    error={errors.email}
                                 />
                                 <TextinputGroup 
                                     label="Phone" 
@@ -68,6 +94,7 @@ import TextinputGroup from '../helpers/TextinputGroup'
                                     name="phone" 
                                     value={phone} 
                                     onChange={this.onChangeInput}
+                                    error={errors.phone}
                                 />
                                         <button className="btn btn-success btn-block">Add New Contact</button>
                                    </div>

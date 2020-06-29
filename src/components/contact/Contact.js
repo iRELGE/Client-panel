@@ -32,7 +32,7 @@ class Contact extends Component {
     render() {
         
         //pour les components sous form de class il faut etuliser props pre definit c'elle qui recoi data
-        const { id,name, tel, email } = this.props.data;
+        const { id,name, phone, email } = this.props.data;
         return(
             <Consumer>
             {value=>{
@@ -59,7 +59,7 @@ class Contact extends Component {
                              {/* affisher le contenu dans les parentaise si l acondition est true si nn afficher le null */}
                              {(this.state.showContactToggle)?(
                              <ul className="list-group">
-                              <li className="list-group-item">{tel}</li>
+                              <li className="list-group-item">{phone}</li>
                              <li className="list-group-item">{email}</li>
                              </ul>)
                              :(null)}
@@ -81,7 +81,7 @@ class Contact extends Component {
 }
 Contact.defaultProps = {
      name: "default",
-     tel: "+************",
+     phone: "+************",
      email: "default@GMAIL.COM"
  }
 Contact.propTypes = {
