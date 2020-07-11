@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './contact.css'
 import {Consumer} from '../context';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 
 class Contact extends Component {
@@ -18,16 +20,20 @@ class Contact extends Component {
             }
         )
       }
-      onDeleteClick=(id,dispatch)=>
+      onDeleteClick=async (id,dispatch)=>
       {
-          
-          dispatch(
-              {
-                  type:'DELETE_CONTACT',
-                  payload: id
-              }
-          )
-        
+          try{
+        const res=await axios.delete('https://jsonplaceholder.typicode.com/users/'+id)
+        dispatch(
+            {
+                type:'DELETE_CONTACT',
+                payload: id
+            }
+        )}
+        catch (e)
+        {
+            console.log(e.error)
+        }
       }
     render() {
         
@@ -48,11 +54,28 @@ class Contact extends Component {
                           {/* onClick la methode ShowContact va avoir name on parame obligatoit de delarer this 
                           NB n indique pas que j ai deux param pour avoir data non pas les infos du event  */}
                          
-                         {(this.state.showContactToggle)?(<i onClick={this.ShowContact.bind(this,name)} className="fa fa-sort-down"  style={{cursor:'pointer'}}></i>):(<i onClick={this.ShowContact.bind(this,name)} style={{cursor:'pointer'}} className="fa fa-plus" aria-hidden="true">
+                         {(this.state.showContactToggle)?
+                         (<i onClick={this.ShowContact.bind(this,name)} 
+                         className="fa fa-sort-down"  style={{cursor:'pointer'}}></i>):
+                         (<i onClick={this.ShowContact.bind(this,name)} style={{cursor:'pointer'}} 
+                         className="fa fa-plus" aria-hidden="true">
      
                          </i>)}
+                         
+                         <Link to={`contact/edit/${id}`}><i 
+                         className="fa fa-pencil"
+                         style={{
+                             color:'orange',
+                             float:'right',
+                             cursor:'pointer',
+                             marginLeft:'8px'
+                         }}
+                         ></i></Link>
                        
-                         <i onClick={this.onDeleteClick.bind(this,id,dispatch)} style={{color:'red' ,float:'right',cursor:'pointer'}} className="fa fa-times" aria-hidden="true"></i>
+                         <i onClick={this.onDeleteClick.bind(this,id,dispatch)} 
+                         style={{color:'red' ,float:'right',cursor:'pointer'}} 
+                         className="fa fa-times" aria-hidden="true"></i>
+                         
                          </h4>
                         
                          <div className="card-text">

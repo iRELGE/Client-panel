@@ -4,19 +4,43 @@ import TextinputGroup from '../helpers/TextinputGroup'
 import axios from 'axios';
 
 
- class AddContact extends Component {
+ class EditContact extends Component {
     state={
+        
          name:'',
          email:'',
          phone:'',
          errors:{}
 
         }
+        
+       async componentDidMount()
+        {
+            
+            const id=this.props.match.params.id
+            try{
+               const res= await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+               const{name,email,phone,error}=res.data
+               this.setState({
+                   
+                   name,
+                   email,
+                   phone,
+                   error
+                   
+               })
+               console.log(this.state.state)
+            }catch(e)
+            {
+                console.error(e);
+            }
+        }
         onChangeInput=(e)=>this.setState({[e.target.name]:e.target.value})
         submit=async (dispatch,size,e)=>{
            
             
             e.preventDefault();
+            const id=this.props.match.params.id
            const {name,email,phone}=this.state;
             if(name==="")
             {
@@ -33,20 +57,22 @@ import axios from 'axios';
                 this.setState({errors:{phone:"phone is requiered!"}})
                 return;
             }
-            const newContact={
+            const upContact={
+                id,
                 name,
                 email,
                 phone
 
             }
             try{
-           const res= await axios.post('https://jsonplaceholder.typicode.com/users',newContact)
+           const res= await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`,upContact)
            dispatch(
             {
-                type:"ADD_CONTACT",
+                type:"UPDATE_CONTACT",
                 payload:res.data
             } )
             this.setState({
+                id,
                name:'',
                 email:'',
                 phone:'',
@@ -55,6 +81,7 @@ import axios from 'axios';
                 
             })
             this.props.history.push('/');
+            
         }
             catch(e){
                 console.log(e)
@@ -66,6 +93,7 @@ import axios from 'axios';
             <Consumer>
                 {value=>{
                     const {dispatch}=value;
+                    
                     return (
 
                         <div>
@@ -73,7 +101,7 @@ import axios from 'axios';
                             <div className="card">
                              
                                <div className="card-body">
-                                   <h4 className="card-title">Add Contact</h4>
+                                   <h4 className="card-title">Edit Contact</h4>
                                    <div className="card-text">
                                 <TextinputGroup 
                                     label="Name" 
@@ -99,7 +127,7 @@ import axios from 'axios';
                                     onChange={this.onChangeInput}
                                     error={errors.phone}
                                 />
-                                        <button className="btn btn-success btn-block">Add New Contact</button>
+                                        <button className="btn btn-danger btn-block">Update Contact</button>
                                    </div>
                                </div>
                            </div>
@@ -115,4 +143,4 @@ import axios from 'axios';
         
     }
 }
-export default AddContact;
+export default EditContact;
